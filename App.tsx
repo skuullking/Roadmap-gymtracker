@@ -5,7 +5,7 @@ import { Task, Stats, Priority } from './types';
 import { INITIAL_DATA } from './constants';
 import { TaskCard } from './components/TaskCard';
 
-const STORAGE_KEY = 'gymtracker_roadmap_v2';
+const STORAGE_KEY = 'gymtracker_roadmap_v2_clean';
 
 export default function App() {
   const [tasks, setTasks] = useState<Task[]>(() => {
@@ -67,18 +67,18 @@ export default function App() {
   }, [tasks]);
 
   return (
-    <div className="min-h-screen pb-32">
+    <div className="min-h-screen pb-40">
       {/* Header Section */}
-      <header className="sticky top-0 z-30 bg-[#0f172a]/85 backdrop-blur-xl border-b border-slate-800/60 shadow-xl">
+      <header className="sticky top-0 z-40 bg-[#0f172a]/90 backdrop-blur-xl border-b border-slate-800 shadow-2xl">
         <div className="max-w-4xl mx-auto px-6 py-6">
           <div className="flex justify-between items-center mb-6">
             <div className="flex items-center gap-3">
-              <div className="p-2 bg-indigo-600 rounded-lg">
+              <div className="p-2 bg-indigo-600 rounded-lg shadow-lg shadow-indigo-500/20">
                 <Activity className="w-6 h-6 text-white" />
               </div>
               <div>
-                <h1 className="text-2xl font-black text-white tracking-tight italic text-indigo-50">GymTracker</h1>
-                <p className="text-slate-500 text-[10px] font-bold uppercase tracking-[0.3em]">Master Plan | Roadmap</p>
+                <h1 className="text-2xl font-black text-white tracking-tight italic leading-tight">GymTracker</h1>
+                <p className="text-slate-500 text-[10px] font-bold uppercase tracking-[0.3em] mt-0.5">Master Plan | Roadmap</p>
               </div>
             </div>
             <div className="text-right">
@@ -91,15 +91,15 @@ export default function App() {
             </div>
           </div>
 
-          <div className="relative h-2.5 w-full bg-slate-800 rounded-full overflow-hidden shadow-inner">
+          <div className="relative h-2 w-full bg-slate-800 rounded-full overflow-hidden">
             <div 
-              className="absolute h-full bg-gradient-to-r from-indigo-600 via-indigo-400 to-emerald-400 transition-all duration-1000 ease-out shadow-[0_0_15px_rgba(79,70,229,0.4)]"
+              className="absolute h-full bg-gradient-to-r from-indigo-600 via-indigo-400 to-emerald-400 transition-all duration-1000 ease-out"
               style={{ width: `${stats.percentage}%` }}
             />
           </div>
           <div className="flex justify-between mt-3 text-[11px] font-bold text-slate-500 uppercase tracking-wider font-mono">
-            <span>{stats.completedSubtasks} sous-tâches validées</span>
-            <span className="text-indigo-400">Reste: {stats.totalSubtasks - stats.completedSubtasks}</span>
+            <span>{stats.completedSubtasks} / {stats.totalSubtasks} validées</span>
+            <span className="text-indigo-400">Target MVP</span>
           </div>
         </div>
       </header>
@@ -109,9 +109,9 @@ export default function App() {
         
         {/* Priority Sections */}
         <section className="space-y-6">
-          <div className="flex items-center gap-2 text-red-400 mb-2">
+          <div className="flex items-center gap-2 text-red-400 mb-2 px-1">
             <TrendingUp className="w-5 h-5" />
-            <h2 className="text-lg font-bold uppercase tracking-wider">P1 - Cœur de Projet (MVP)</h2>
+            <h2 className="text-lg font-black uppercase tracking-wider">P1 - Cœur de Projet (MVP)</h2>
           </div>
           <div className="grid gap-4">
             {groupedTasks.P1.map(task => (
@@ -126,9 +126,9 @@ export default function App() {
         </section>
 
         <section className="space-y-6">
-          <div className="flex items-center gap-2 text-blue-400 pt-10 border-t border-slate-800/50 mb-2">
+          <div className="flex items-center gap-2 text-blue-400 pt-10 border-t border-slate-800/50 mb-2 px-1">
             <Layers className="w-5 h-5" />
-            <h2 className="text-lg font-bold uppercase tracking-wider">P2 - Rétention & Social</h2>
+            <h2 className="text-lg font-black uppercase tracking-wider">P2 - Rétention & Social</h2>
           </div>
           <div className="grid gap-4">
             {groupedTasks.P2.map(task => (
@@ -143,9 +143,9 @@ export default function App() {
         </section>
 
         <section className="space-y-6">
-          <div className="flex items-center gap-2 text-orange-400 pt-10 border-t border-slate-800/50 mb-2">
+          <div className="flex items-center gap-2 text-orange-400 pt-10 border-t border-slate-800/50 mb-2 px-1">
             <Database className="w-5 h-5" />
-            <h2 className="text-lg font-bold uppercase tracking-wider">P3 - Avancé & Data</h2>
+            <h2 className="text-lg font-black uppercase tracking-wider">P3 - Avancé & Data</h2>
           </div>
           <div className="grid gap-4">
             {groupedTasks.P3.map(task => (
@@ -160,9 +160,9 @@ export default function App() {
         </section>
 
         <section className="space-y-6 opacity-60 hover:opacity-100 transition-opacity duration-300">
-          <div className="flex items-center gap-2 text-slate-500 pt-10 border-t border-slate-800/50 mb-2">
+          <div className="flex items-center gap-2 text-slate-500 pt-10 border-t border-slate-800/50 mb-2 px-1">
             <Lock className="w-5 h-5" />
-            <h2 className="text-lg font-bold uppercase tracking-wider">V2 / Futur (Hors Scope)</h2>
+            <h2 className="text-lg font-black uppercase tracking-wider">V2 / Futur (Hors Scope)</h2>
           </div>
           <div className="grid gap-4">
             {groupedTasks.V2.map(task => (
@@ -179,12 +179,12 @@ export default function App() {
       </main>
 
       {/* Footer Nav / Branding */}
-      <footer className="fixed bottom-0 left-0 right-0 bg-slate-900/95 backdrop-blur-md border-t border-slate-800 py-6 px-4">
+      <footer className="fixed bottom-0 left-0 right-0 bg-slate-900/95 backdrop-blur-md border-t border-slate-800 py-6 px-4 z-40">
         <div className="max-w-4xl mx-auto flex justify-between items-center text-[10px] text-slate-500 uppercase tracking-widest font-bold">
           <div>GymTracker Master Plan &copy; 2024</div>
           <div className="flex gap-4">
-            <span className="text-indigo-400">Productive Stack</span>
-            <span>Build 1.4.2</span>
+            <span className="text-indigo-400">Production Ready</span>
+            <span>v1.4.3</span>
           </div>
         </div>
       </footer>

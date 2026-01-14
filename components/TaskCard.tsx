@@ -2,7 +2,7 @@
 import React from 'react';
 import { 
   Check, ChevronDown, ChevronRight, BarChart2, Calendar, FileText, 
-  Calculator, HelpCircle, Bell, Database, Activity, Share2, Smartphone, WifiOff, Cpu, HeartPulse 
+  Calculator, HelpCircle, Bell, Database, Activity, Share2, Smartphone, WifiOff, HeartPulse 
 } from 'lucide-react';
 import { Task } from '../types';
 import { PriorityBadge } from './PriorityBadge';
@@ -37,7 +37,6 @@ export const TaskCard: React.FC<TaskCardProps> = ({
     if (name.includes("social") || name.includes("partage")) return <Share2 className="w-5 h-5" />;
     if (name.includes("mobile")) return <Smartphone className="w-5 h-5" />;
     if (name.includes("hors-ligne")) return <WifiOff className="w-5 h-5" />;
-    if (name.includes("ia") || name.includes("caméra")) return <Cpu className="w-5 h-5" />;
     if (name.includes("santé") || name.includes("fit")) return <HeartPulse className="w-5 h-5" />;
     if (isFullyComplete) return <Check className="w-5 h-5" />;
     return <Database className="w-5 h-5" />;
