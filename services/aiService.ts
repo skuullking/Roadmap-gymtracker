@@ -4,7 +4,8 @@ import { Task } from "../types";
 
 export const generateNextSteps = async (tasks: Task[]): Promise<string> => {
   try {
-    const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || "" });
+    // Correct initialization using named parameter and process.env.API_KEY directly
+    const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
     
     const uncompletedP1 = tasks
       .filter(t => t.priority === 'P1')
@@ -21,11 +22,13 @@ export const generateNextSteps = async (tasks: Task[]): Promise<string> => {
       Be concise and technical.
     `;
 
+    // Correct generateContent call with model and contents
     const response = await ai.models.generateContent({
       model: 'gemini-3-flash-preview',
       contents: prompt,
     });
 
+    // Extract text using the .text property as per guidelines
     return response.text || "Keep pushing! Focus on finishing the core P1 features to launch your MVP.";
   } catch (error) {
     console.error("AI Error:", error);
